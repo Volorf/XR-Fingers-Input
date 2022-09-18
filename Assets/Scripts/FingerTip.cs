@@ -1,14 +1,16 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class FingerTip : MonoBehaviour
 {
+    public TextMeshPro label;
     public FingerTipData data;
     
     [SerializeField] private int positionsMemoryLimit = 10;
-    [SerializeField] private float positionsFrequencyCheck = 0.1f;
+    [SerializeField] private float positionsFrequencyCheck = 0.2f;
 
     private LimitedPositionsQueue _positionsQueue;
 
@@ -33,42 +35,50 @@ public class FingerTip : MonoBehaviour
 
     private IEnumerator PositionsCollector()
     {
-        for (;;)
+        while(true)
         {
+            print("it works");
             _positionsQueue.Enqueue(transform.position);
+            label.text = _positionsQueue.CalculateSumDistance().ToString();
             yield return new WaitForSeconds(positionsFrequencyCheck);
         }
     }
 }
 
-public class LimitedPositionsQueue : Queue<Vector3>
+public class LimitedPositionsQueue
 {
-    private int Limit { get; }
+    private int Limit;
 
-    public LimitedPositionsQueue(int limit) : base(limit)
+    private Queue<Vector3> _limQueue = new Queue<Vector3>();
+
+    public LimitedPositionsQueue(int limit)
     {
         Limit = limit;
     }
 
-    public new void Enqueue(Vector3 position)
+    public void Enqueue(Vector3 position)
     {
-        while (Count >= Limit)
+        if (_limQueue.Count > Limit)
         {
-            Dequeue();
+            _limQueue.Dequeue();
         }
-        base.Enqueue(position);
+        _limQueue.Enqueue(position);
     }
     
     public float CalculateSumDistance()
     {
         float sumDistance = 0f;
-        Vector3[] positionsArray = this.ToArray();
+        Vector3[] positionsArray = _limQueue.ToArray();
 
-        for (int i = 0; i < Limit - 1; i++)
+        if (positionsArray.Length <= 1)
+        {
+            return 0f;
+        }
+
+        for (int i = 0; i < positionsArray.Length - 1; i++)
         {
             sumDistance += Vector3.Distance(positionsArray[i], positionsArray[i + 1]);
         }
-
         return sumDistance;
     }
 }
