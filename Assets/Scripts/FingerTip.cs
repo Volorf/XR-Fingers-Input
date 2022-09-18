@@ -14,7 +14,7 @@ public class FingerTip : MonoBehaviour
 
     public float GetSumDistance()
     {
-        return 0f;
+        return _positionsQueue.CalculateSumDistance();
     }
 
     private void Start()
@@ -59,5 +59,16 @@ public class LimitedPositionsQueue : Queue<Vector3>
         base.Enqueue(position);
     }
     
-    // TODO: Write method to calculate sum distance
+    public float CalculateSumDistance()
+    {
+        float sumDistance = 0f;
+        Vector3[] positionsArray = this.ToArray();
+
+        for (int i = 0; i < Limit - 1; i++)
+        {
+            sumDistance += Vector3.Distance(positionsArray[i], positionsArray[i + 1]);
+        }
+
+        return sumDistance;
+    }
 }
