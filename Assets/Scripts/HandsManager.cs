@@ -13,8 +13,8 @@ public class HandsManager : MonoBehaviour
     [Header("Right Hand")]
     [Space(8)]
     public OVRSkeleton rightHandSkeleton;
-    public FingerTipPosition RightHandIndexTipPosition;
     public FingerTipPosition RightHandThumbTipPosition;
+    public FingerTipPosition RightHandIndexTipPosition;
     public FingerTipPosition RightHandMiddleTipPosition;
     public FingerTipPosition RightHandRingTipPosition;
     public FingerTipPosition RightHandPinkyTipPosition;
@@ -23,8 +23,8 @@ public class HandsManager : MonoBehaviour
     [Header("Left Hand")]
     [Space(8)]
     public OVRSkeleton leftHandSkeleton;
-    public FingerTipPosition LeftHandIndexTipPosition;
     public FingerTipPosition LeftHandThumbTipPosition;
+    public FingerTipPosition LeftHandIndexTipPosition;
     public FingerTipPosition LeftHandMiddleTipPosition;
     public FingerTipPosition LeftHandRingTipPosition;
     public FingerTipPosition LeftHandPinkyTipPosition;
@@ -35,47 +35,79 @@ public class HandsManager : MonoBehaviour
         // RIGHT HAND
         
         // Thumb Tip
-        Vector3 rightHandThumbTipPosition = rightHandSkeleton.Bones[(int)OVRSkeleton.BoneId.Hand_ThumbTip].Transform.position;
-        RightHandThumbTipPosition.Invoke(rightHandThumbTipPosition);
+        Transform rightHandThumbTipTransform = rightHandSkeleton.Bones[(int)OVRSkeleton.BoneId.Hand_ThumbTip].Transform;
+        if (rightHandThumbTipTransform != null)
+        {
+            RightHandThumbTipPosition.Invoke(rightHandThumbTipTransform.position);
+        }
         
         // Index Tip
-        Vector3 rightHandIndexTipIndexPosition = rightHandSkeleton.Bones[(int)OVRSkeleton.BoneId.Hand_IndexTip].Transform.position;
-        RightHandIndexTipPosition.Invoke(rightHandIndexTipIndexPosition);
+        Transform rightHandIndexTipTransform = rightHandSkeleton.Bones[(int)OVRSkeleton.BoneId.Hand_IndexTip].Transform;
+        if (rightHandIndexTipTransform != null)
+        {
+            RightHandIndexTipPosition.Invoke(rightHandIndexTipTransform.position);
+        }
         
-        // Middle Tip
-        Vector3 rightHandMiddleTipIndexPosition = rightHandSkeleton.Bones[(int)OVRSkeleton.BoneId.Hand_MiddleTip].Transform.position;
-        RightHandMiddleTipPosition.Invoke(rightHandMiddleTipIndexPosition);
+        // // Middle Tip
+        Transform rightHandMiddleTipTransform = rightHandSkeleton.Bones[(int)OVRSkeleton.BoneId.Hand_MiddleTip].Transform;
+        if (rightHandMiddleTipTransform != null)
+        {
+            RightHandMiddleTipPosition.Invoke(rightHandMiddleTipTransform.position);
+        }
         
-        // Ring Tip
-        Vector3 rightHandRingTipIndexPosition = rightHandSkeleton.Bones[(int)OVRSkeleton.BoneId.Hand_RingTip].Transform.position;
-        RightHandRingTipPosition.Invoke(rightHandRingTipIndexPosition);
+        // // Ring Tip
+        Transform rightHandRingTipTransform = rightHandSkeleton.Bones[(int)OVRSkeleton.BoneId.Hand_RingTip].Transform;
+        if (rightHandRingTipTransform != null)
+        {
+            RightHandRingTipPosition.Invoke(rightHandRingTipTransform.position);
+        }
         
-        // Pinky Tip
-        Vector3 rightHandPinkyTipIndexPosition = rightHandSkeleton.Bones[(int)OVRSkeleton.BoneId.Hand_PinkyTip].Transform.position;
-        RightHandPinkyTipPosition.Invoke(rightHandPinkyTipIndexPosition);
+        // // Pinky Tip
+        Transform rightHandPinkyTipTransform = rightHandSkeleton.Bones[(int)OVRSkeleton.BoneId.Hand_PinkyTip].Transform;
+        if (rightHandPinkyTipTransform != null)
+        {
+            RightHandPinkyTipPosition.Invoke(rightHandPinkyTipTransform.position);
+        }
+        
         
         
         
         // LEFT HAND
         
         // Thumb Tip
-        Vector3 leftHandThumbTipPosition = leftHandSkeleton.Bones[(int)OVRSkeleton.BoneId.Hand_ThumbTip].Transform.position;
-        LeftHandThumbTipPosition.Invoke(leftHandThumbTipPosition);
+        Transform leftHandThumbTipTransform = leftHandSkeleton.Bones[(int)OVRSkeleton.BoneId.Hand_ThumbTip].Transform;
+        if (leftHandThumbTipTransform != null)
+        {
+            LeftHandThumbTipPosition.Invoke(leftHandThumbTipTransform.position);
+        }
         
-        // Index Tip
-        Vector3 leftHandIndexTipIndexPosition = leftHandSkeleton.Bones[(int)OVRSkeleton.BoneId.Hand_IndexTip].Transform.position;
-        LeftHandIndexTipPosition.Invoke(leftHandIndexTipIndexPosition);
+        // // Index Tip
+        Transform leftHandIndexTipTransform = leftHandSkeleton.Bones[(int)OVRSkeleton.BoneId.Hand_IndexTip].Transform;
+        if (leftHandIndexTipTransform != null)
+        {
+            LeftHandIndexTipPosition.Invoke(leftHandIndexTipTransform.position);
+        }
         
-        // Middle Tip
-        Vector3 leftHandMiddleTipIndexPosition = leftHandSkeleton.Bones[(int)OVRSkeleton.BoneId.Hand_MiddleTip].Transform.position;
-        LeftHandMiddleTipPosition.Invoke(leftHandMiddleTipIndexPosition);
+        // // Middle Tip
+        Transform leftHandMiddleTipTransform = leftHandSkeleton.Bones[(int)OVRSkeleton.BoneId.Hand_MiddleTip].Transform;
+        if (leftHandMiddleTipTransform != null)
+        {
+            LeftHandMiddleTipPosition.Invoke(leftHandMiddleTipTransform.position);
+        }
         
-        // Ring Tip
-        Vector3 leftHandRingTipIndexPosition = leftHandSkeleton.Bones[(int)OVRSkeleton.BoneId.Hand_RingTip].Transform.position;
-        LeftHandRingTipPosition.Invoke(leftHandRingTipIndexPosition);
+        // // Ring Tip
+        Transform leftHandRingTipTransform = leftHandSkeleton.Bones[(int)OVRSkeleton.BoneId.Hand_RingTip].Transform;
+        if (leftHandRingTipTransform != null)
+        {
+            LeftHandRingTipPosition.Invoke(leftHandRingTipTransform.position);
+        }
         
-        // Pinky Tip
-        Vector3 leftHandPinkyTipIndexPosition = leftHandSkeleton.Bones[(int)OVRSkeleton.BoneId.Hand_PinkyTip].Transform.position;
-        LeftHandPinkyTipPosition.Invoke(leftHandPinkyTipIndexPosition);
+        // // Pinky Tip
+        Transform leftHandPinkyTipTransform = leftHandSkeleton.Bones[(int)OVRSkeleton.BoneId.Hand_PinkyTip].Transform;
+        if (leftHandPinkyTipTransform != null)
+        {
+            LeftHandPinkyTipPosition.Invoke(leftHandPinkyTipTransform.position);
+        }
+        
     }
 }

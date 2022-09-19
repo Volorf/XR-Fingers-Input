@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using Volorf.VRNotifications;
 
 public class FingerTip : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class FingerTip : MonoBehaviour
     [SerializeField] private float positionsFrequencyCheck = 0.2f;
 
     private LimitedPositionsQueue _positionsQueue;
+
+    private bool _canInteract = true;
 
     public float GetSumDistance()
     {
@@ -27,17 +30,51 @@ public class FingerTip : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("FingerTip"))
+        if (other.gameObject.CompareTag("FingerTip") && _canInteract)
         {
+            _canInteract = false;
             FingerTip otherFingerTip = other.gameObject.GetComponent<FingerTip>();
+            if (GetSumDistance() > otherFingerTip.GetSumDistance())
+            {
+                if (otherFingerTip.data.Values.ContainsKey(data.type))
+                {
+                    string str = "Value for " + otherFingerTip.data.type.ToString() + " is " + otherFingerTip.data.Values[data.type];
+                    Notification not = new Notification(str, NotificationType.Warning);
+                    NotificationManager.Instance.AddMessage(not);
+                }
+            }
+            else
+            {
+                if (data.Values.ContainsKey(otherFingerTip.data.type))
+                {
+                    string str = "Value for " + data.type.ToString() + " is " + data.Values[otherFingerTip.data.type];
+                    Notification not = new Notification(str, NotificationType.Warning);
+                    NotificationManager.Instance.AddMessage(not);
+                }
+            }
+
+            StartCoroutine(MakeItInteractableAgain());
         }
+    }
+
+    private IEnumerator MakeItInteractableAgain()
+    {
+        float timer = 0f;
+
+        while (timer < 1f)
+        {
+            timer += Time.deltaTime;
+            yield return null;
+        }
+
+        _canInteract = true;
     }
 
     private IEnumerator PositionsCollector()
     {
         while(true)
         {
-            print("it works");
+            // print("it works");
             _positionsQueue.Enqueue(transform.position);
             label.text = _positionsQueue.CalculateSumDistance().ToString();
             yield return new WaitForSeconds(positionsFrequencyCheck);
@@ -79,6 +116,6 @@ public class LimitedPositionsQueue
         {
             sumDistance += Vector3.Distance(positionsArray[i], positionsArray[i + 1]);
         }
-        return sumDistance;
+        return Mathf.Round(sumDistance * 1000f) / 1000f;
     }
 }
