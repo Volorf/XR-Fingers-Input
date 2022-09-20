@@ -473,6 +473,8 @@ MonoBehaviour:
   positionsFrequencyCheck: 0.1
   normMat: {fileID: 2100000, guid: 2cb57b3cc036e1446acb715a92610056, type: 2}
   activeMat: {fileID: 2100000, guid: 51a0658cfce819f4fa12394e6a180f1b, type: 2}
+  sphereCollider: {fileID: 5771166741034697414}
+  meshRenderer: {fileID: 5771166741034697413}
 --- !u!54 &5014221498889396511
 Rigidbody:
   m_ObjectHideFlags: 0

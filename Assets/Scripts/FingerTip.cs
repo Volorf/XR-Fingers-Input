@@ -19,21 +19,21 @@ public class FingerTip : MonoBehaviour
  
     private LimitedPositionsQueue _positionsQueue;
 
-    private SphereCollider _sphereCollider;
-    private MeshRenderer _meshRenderer;
+    [SerializeField] private SphereCollider sphereCollider;
+    [SerializeField] private MeshRenderer meshRenderer;
 
     private bool _canInteract = true;
 
     public void SetColliderTriggerOn()
     {
-        _sphereCollider.isTrigger = true;
-        _meshRenderer.material = activeMat;
+        // _sphereCollider.isTrigger = true;
+        // _meshRenderer.material = activeMat;
     }
     
     public void SetColliderTriggerOff()
     {
-        _sphereCollider.isTrigger = false;
-        _meshRenderer.material = normMat;
+        // _sphereCollider.isTrigger = false;
+        // _meshRenderer.material = normMat;
     }
     
     public float GetSumDistance()

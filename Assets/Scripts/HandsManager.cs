@@ -18,8 +18,8 @@ public class HandsManager : MonoBehaviour
     public FingerTipPosition RightHandMiddleTipPosition;
     public FingerTipPosition RightHandRingTipPosition;
     public FingerTipPosition RightHandPinkyTipPosition;
-    private List<OVRBone> _rightHandBones;
-    private List<OVRBone> _leftHandBones;
+    private List<OVRBone> _rightHandBones = new List<OVRBone>();
+    private List<OVRBone> _leftHandBones = new List<OVRBone>();
     
     [Space(24)]
     [Header("Left Hand")]
@@ -36,31 +36,51 @@ public class HandsManager : MonoBehaviour
 
     private void Start()
     {
-        _rightHandBones = new List<OVRBone>(rightHandSkeleton.Bones);
-        _leftHandBones = new List<OVRBone>(leftHandSkeleton.Bones);
-
-        GameObject[] fingerTipsGo = GameObject.FindGameObjectsWithTag("FingerTip");
-        foreach (var finger in fingerTipsGo)
-        {
-            if (finger.TryGetComponent(out FingerTip ft))
-            {
-                _allFingerTips.Add(ft);
-            }
-        }
+        // _rightHandBones = new List<OVRBone>(rightHandSkeleton.Bones);
+        // _leftHandBones = new List<OVRBone>(leftHandSkeleton.Bones);
         
-        Debug.LogWarning("Count:" + _allFingerTips.Count);
-    
-    }
+        // if (leftHand.TryGetComponent(out OVRSkeleton skeleton))
+        // {
+        //     Debug.LogWarning("leftHandSkeleton.Bones: " + skeleton.Bones.Count);
+        //     foreach (var bone in skeleton.Bones)
+        //     {
+        //         _leftHandBones.Add(bone);
+        //     }
+        // }
+        //
+        //
+        // Debug.LogWarning("_leftHandBones.Count: " + _leftHandBones.Count);
+        
+        
+        // GameObject[] fingerTipsGo = GameObject.FindGameObjectsWithTag("FingerTip");
+        // foreach (var finger in fingerTipsGo)
+        // {
+        //     if (finger.TryGetComponent(out FingerTip ft))
+        //     {
+        //         _allFingerTips.Add(ft);
+        //     }
+        // }
+        //
+        // Debug.LogWarning("Count:" + _allFingerTips.Count);
 
+    }
+    
+    
     void Update()
     {
+        
+        
+        
         // foreach (var fingerTip in _allFingerTips)
         // {
         //     fingerTip.SetColliderTriggerOff();
         // }
 
         // RIGHT HAND
-        foreach (var bone in _rightHandBones)
+
+        List<OVRBone> rhb = new List<OVRBone>(rightHandSkeleton.Bones);
+        
+        foreach (var bone in rhb)
         {
             switch (bone.Id)
             {
@@ -107,14 +127,17 @@ public class HandsManager : MonoBehaviour
         }
         
         // LEFT HAND
-        foreach (var bone in _leftHandBones)
+        
+        List<OVRBone> lhb = new List<OVRBone>(leftHandSkeleton.Bones);
+        
+        foreach (var bone in lhb)
         {
             switch (bone.Id)
             {
                 // Thumb Tip
                 case OVRSkeleton.BoneId.Hand_ThumbTip:
                 {
-                    LeftHandThumbTipPosition.Invoke(bone.Transform.position);
+                    LeftHandThumbTipPosition.Invoke(leftHandSkeleton.Bones[(int)OVRSkeleton.BoneId.Hand_ThumbTip].Transform.position);
                     break;
                 }
                 // Index Tip
