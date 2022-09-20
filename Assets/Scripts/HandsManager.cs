@@ -18,6 +18,7 @@ public class HandsManager : MonoBehaviour
     public FingerTipPosition RightHandRingTipPosition;
     public FingerTipPosition RightHandPinkyTipPosition;
     private List<OVRBone> _rightHandBones;
+    private List<OVRBone> _leftHandBones;
     
     [Space(24)]
     [Header("Left Hand")]
@@ -29,93 +30,105 @@ public class HandsManager : MonoBehaviour
     public FingerTipPosition LeftHandRingTipPosition;
     public FingerTipPosition LeftHandPinkyTipPosition;
 
+    private FingerTip _activeFingerTip;
+    private List<FingerTip> _allFingerTips;
+
     private void Start()
     {
         _rightHandBones = new List<OVRBone>(rightHandSkeleton.Bones);
+        _leftHandBones = new List<OVRBone>(leftHandSkeleton.Bones);
+
+        // GameObject[] fingerTipsGo = GameObject.FindGameObjectsWithTag("FingerTip");
+        // foreach (var finger in fingerTipsGo)
+        // {
+        //     _allFingerTips.Add(finger.GetComponent<FingerTip>());
+        // }
     }
 
     void Update()
     {
+        // foreach (var fingerTip in _allFingerTips)
+        // {
+        //     fingerTip.SetColliderTriggerOff();
+        // }
+
         // RIGHT HAND
         foreach (var bone in _rightHandBones)
         {
-            // Thumb Tip
-            if (bone.Id == OVRSkeleton.BoneId.Hand_ThumbTip)
+            switch (bone.Id)
             {
-                Transform rightHandThumbTipTransform = rightHandSkeleton.Bones[(int)OVRSkeleton.BoneId.Hand_ThumbTip].Transform;
-                RightHandThumbTipPosition.Invoke(rightHandThumbTipTransform.position);
+                // Thumb Tip
+                case OVRSkeleton.BoneId.Hand_ThumbTip:
+                {
+                    RightHandThumbTipPosition.Invoke(bone.Transform.position);
+                    break;
+                }
+                // Index Tip
+                case OVRSkeleton.BoneId.Hand_IndexTip:
+                {
+                    RightHandIndexTipPosition.Invoke(bone.Transform.position);
+                    break;
+                }
+                // Middle Tip
+                case OVRSkeleton.BoneId.Hand_MiddleTip:
+                    RightHandMiddleTipPosition.Invoke(bone.Transform.position);
+                    break;
+                // Ring Tip
+                case OVRSkeleton.BoneId.Hand_RingTip:
+                    RightHandRingTipPosition.Invoke(bone.Transform.position);
+                    break;
+                // Pinky Tip
+                case OVRSkeleton.BoneId.Hand_PinkyTip:
+                    RightHandPinkyTipPosition.Invoke(bone.Transform.position);
+                    break;
             }
+
+            // float distanceScore = 0f;
+            //
+            // foreach (var fingerTip in _allFingerTips)
+            // {
+            //     float fingerTipDistanceScore = fingerTip.GetSumDistance();
+            //     if (fingerTipDistanceScore >= distanceScore)
+            //     {
+            //         _activeFingerTip = fingerTip;
+            //         distanceScore = fingerTipDistanceScore;
+            //     }
+            // }
+            
+            // _activeFingerTip.SetColliderTriggerOn();
+            
         }
         
-
-
-        // // Index Tip
-        // Transform rightHandIndexTipTransform = rightHandSkeleton.Bones[(int)OVRSkeleton.BoneId.Hand_IndexTip].Transform;
-        // if (rightHandIndexTipTransform != null)
-        // {
-        //     RightHandIndexTipPosition.Invoke(rightHandIndexTipTransform.position);
-        // }
-        //
-        // // // Middle Tip
-        // Transform rightHandMiddleTipTransform = rightHandSkeleton.Bones[(int)OVRSkeleton.BoneId.Hand_MiddleTip].Transform;
-        // if (rightHandMiddleTipTransform != null)
-        // {
-        //     RightHandMiddleTipPosition.Invoke(rightHandMiddleTipTransform.position);
-        // }
-        //
-        // // // Ring Tip
-        // Transform rightHandRingTipTransform = rightHandSkeleton.Bones[(int)OVRSkeleton.BoneId.Hand_RingTip].Transform;
-        // if (rightHandRingTipTransform != null)
-        // {
-        //     RightHandRingTipPosition.Invoke(rightHandRingTipTransform.position);
-        // }
-        //
-        // // // Pinky Tip
-        // Transform rightHandPinkyTipTransform = rightHandSkeleton.Bones[(int)OVRSkeleton.BoneId.Hand_PinkyTip].Transform;
-        // if (rightHandPinkyTipTransform != null)
-        // {
-        //     RightHandPinkyTipPosition.Invoke(rightHandPinkyTipTransform.position);
-        // }
-        
-        
-        
-        
         // LEFT HAND
-        
-        // Thumb Tip
-        // Transform leftHandThumbTipTransform = leftHandSkeleton.Bones[(int)OVRSkeleton.BoneId.Hand_ThumbTip].Transform;
-        // if (leftHandThumbTipTransform != null)
-        // {
-        //     LeftHandThumbTipPosition.Invoke(leftHandThumbTipTransform.position);
-        // }
-        //
-        // // // Index Tip
-        // Transform leftHandIndexTipTransform = leftHandSkeleton.Bones[(int)OVRSkeleton.BoneId.Hand_IndexTip].Transform;
-        // if (leftHandIndexTipTransform != null)
-        // {
-        //     LeftHandIndexTipPosition.Invoke(leftHandIndexTipTransform.position);
-        // }
-        //
-        // // // Middle Tip
-        // Transform leftHandMiddleTipTransform = leftHandSkeleton.Bones[(int)OVRSkeleton.BoneId.Hand_MiddleTip].Transform;
-        // if (leftHandMiddleTipTransform != null)
-        // {
-        //     LeftHandMiddleTipPosition.Invoke(leftHandMiddleTipTransform.position);
-        // }
-        //
-        // // // Ring Tip
-        // Transform leftHandRingTipTransform = leftHandSkeleton.Bones[(int)OVRSkeleton.BoneId.Hand_RingTip].Transform;
-        // if (leftHandRingTipTransform != null)
-        // {
-        //     LeftHandRingTipPosition.Invoke(leftHandRingTipTransform.position);
-        // }
-        //
-        // // // Pinky Tip
-        // Transform leftHandPinkyTipTransform = leftHandSkeleton.Bones[(int)OVRSkeleton.BoneId.Hand_PinkyTip].Transform;
-        // if (leftHandPinkyTipTransform != null)
-        // {
-        //     LeftHandPinkyTipPosition.Invoke(leftHandPinkyTipTransform.position);
-        // }
-        
+        foreach (var bone in _leftHandBones)
+        {
+            switch (bone.Id)
+            {
+                // Thumb Tip
+                case OVRSkeleton.BoneId.Hand_ThumbTip:
+                {
+                    LeftHandThumbTipPosition.Invoke(bone.Transform.position);
+                    break;
+                }
+                // Index Tip
+                case OVRSkeleton.BoneId.Hand_IndexTip:
+                {
+                    LeftHandIndexTipPosition.Invoke(bone.Transform.position);
+                    break;
+                }
+                // Middle Tip
+                case OVRSkeleton.BoneId.Hand_MiddleTip:
+                    LeftHandMiddleTipPosition.Invoke(bone.Transform.position);
+                    break;
+                // Ring Tip
+                case OVRSkeleton.BoneId.Hand_RingTip:
+                    LeftHandRingTipPosition.Invoke(bone.Transform.position);
+                    break;
+                // Pinky Tip
+                case OVRSkeleton.BoneId.Hand_PinkyTip:
+                    LeftHandPinkyTipPosition.Invoke(bone.Transform.position);
+                    break;
+            }
+        }
     }
 }

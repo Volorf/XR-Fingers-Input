@@ -7,16 +7,35 @@ using Volorf.VRNotifications;
 
 public class FingerTip : MonoBehaviour
 {
+
     public TextMeshPro label;
     public FingerTipData data;
     
     [SerializeField] private int positionsMemoryLimit = 10;
     [SerializeField] private float positionsFrequencyCheck = 0.2f;
 
+    [SerializeField] private Material normMat;
+    [SerializeField] private Material activeMat;
+ 
     private LimitedPositionsQueue _positionsQueue;
+
+    private SphereCollider _sphereCollider;
+    private MeshRenderer _meshRenderer;
 
     private bool _canInteract = true;
 
+    public void SetColliderTriggerOn()
+    {
+        _sphereCollider.isTrigger = true;
+        _meshRenderer.material = activeMat;
+    }
+    
+    public void SetColliderTriggerOff()
+    {
+        _sphereCollider.isTrigger = false;
+        _meshRenderer.material = normMat;
+    }
+    
     public float GetSumDistance()
     {
         return _positionsQueue.CalculateSumDistance();
@@ -24,6 +43,8 @@ public class FingerTip : MonoBehaviour
 
     private void Start()
     {
+        // _sphereCollider = GetComponent<SphereCollider>();
+        // _meshRenderer = GetComponent<MeshRenderer>();
         _positionsQueue = new LimitedPositionsQueue(positionsMemoryLimit);
         StartCoroutine(PositionsCollector());
     }
