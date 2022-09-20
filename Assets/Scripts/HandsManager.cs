@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using Volorf.VRNotifications;
 
 [Serializable]
 public class FingerTipPosition: UnityEvent<Vector3> {};
@@ -38,11 +39,17 @@ public class HandsManager : MonoBehaviour
         _rightHandBones = new List<OVRBone>(rightHandSkeleton.Bones);
         _leftHandBones = new List<OVRBone>(leftHandSkeleton.Bones);
 
-        // GameObject[] fingerTipsGo = GameObject.FindGameObjectsWithTag("FingerTip");
-        // foreach (var finger in fingerTipsGo)
-        // {
-        //     _allFingerTips.Add(finger.GetComponent<FingerTip>());
-        // }
+        GameObject[] fingerTipsGo = GameObject.FindGameObjectsWithTag("FingerTip");
+        foreach (var finger in fingerTipsGo)
+        {
+            if (finger.TryGetComponent(out FingerTip ft))
+            {
+                _allFingerTips.Add(ft);
+            }
+        }
+
+        Notification not = new Notification(_allFingerTips.Count.ToString(), NotificationType.Error);
+        NotificationManager.Instance.AddMessage(not);
     }
 
     void Update()
