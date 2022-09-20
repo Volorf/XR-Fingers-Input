@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.InputSystem.XR;
 
 [Serializable]
 public class FingerTipPosition: UnityEvent<Vector3> {};
@@ -32,21 +31,21 @@ public class HandsManager : MonoBehaviour
 
     private void Start()
     {
-        // _rightHandBones = new List<OVRBone>(rightHandSkeleton.Bones);
+        _rightHandBones = new List<OVRBone>(rightHandSkeleton.Bones);
     }
 
     void Update()
     {
         // RIGHT HAND
-        // foreach (var bone in _rightHandBones)
-        // {
-        //     // Thumb Tip
-        //     if (bone.Id == OVRSkeleton.BoneId.Hand_ThumbTip)
-        //     {
-        //         Transform rightHandThumbTipTransform = rightHandSkeleton.Bones[(int)OVRSkeleton.BoneId.Hand_ThumbTip].Transform;
-        //         RightHandThumbTipPosition.Invoke(rightHandThumbTipTransform.position);
-        //     }
-        // }
+        foreach (var bone in _rightHandBones)
+        {
+            // Thumb Tip
+            if (bone.Id == OVRSkeleton.BoneId.Hand_ThumbTip)
+            {
+                Transform rightHandThumbTipTransform = rightHandSkeleton.Bones[(int)OVRSkeleton.BoneId.Hand_ThumbTip].Transform;
+                RightHandThumbTipPosition.Invoke(rightHandThumbTipTransform.position);
+            }
+        }
         
 
 
