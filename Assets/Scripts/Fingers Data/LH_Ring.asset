@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56b39df6083c60a44813b4349bc8dcb3, type: 3}
   m_Name: LH_Ring
   m_EditorClassIdentifier: 
-  type: 6
+  type: 8
   pairs:
   - type: 0
     value: J
