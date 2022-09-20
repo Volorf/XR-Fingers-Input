@@ -38,43 +38,28 @@ public class HandsManager : MonoBehaviour
     {
         // _rightHandBones = new List<OVRBone>(rightHandSkeleton.Bones);
         // _leftHandBones = new List<OVRBone>(leftHandSkeleton.Bones);
+
+        GameObject[] fingerTipsGo = GameObject.FindGameObjectsWithTag("FingerTip");
+        foreach (var finger in fingerTipsGo)
+        {
+            if (finger.TryGetComponent(out FingerTip ft))
+            {
+                _allFingerTips.Add(ft);
+            }
+        }
         
-        // if (leftHand.TryGetComponent(out OVRSkeleton skeleton))
-        // {
-        //     Debug.LogWarning("leftHandSkeleton.Bones: " + skeleton.Bones.Count);
-        //     foreach (var bone in skeleton.Bones)
-        //     {
-        //         _leftHandBones.Add(bone);
-        //     }
-        // }
-        //
-        //
-        // Debug.LogWarning("_leftHandBones.Count: " + _leftHandBones.Count);
-        
-        
-        // GameObject[] fingerTipsGo = GameObject.FindGameObjectsWithTag("FingerTip");
-        // foreach (var finger in fingerTipsGo)
-        // {
-        //     if (finger.TryGetComponent(out FingerTip ft))
-        //     {
-        //         _allFingerTips.Add(ft);
-        //     }
-        // }
-        //
-        // Debug.LogWarning("Count:" + _allFingerTips.Count);
+        Debug.LogWarning("Count:" + _allFingerTips.Count);
 
     }
     
     
     void Update()
     {
-        
-        
-        
-        // foreach (var fingerTip in _allFingerTips)
-        // {
-        //     fingerTip.SetColliderTriggerOff();
-        // }
+
+        foreach (var fingerTip in _allFingerTips)
+        {
+            fingerTip.SetColliderTriggerOff();
+        }
 
         // RIGHT HAND
 
@@ -110,20 +95,18 @@ public class HandsManager : MonoBehaviour
                     break;
             }
 
-            // float distanceScore = 0f;
-            //
-            // foreach (var fingerTip in _allFingerTips)
-            // {
-            //     float fingerTipDistanceScore = fingerTip.GetSumDistance();
-            //     if (fingerTipDistanceScore >= distanceScore)
-            //     {
-            //         _activeFingerTip = fingerTip;
-            //         distanceScore = fingerTipDistanceScore;
-            //     }
-            // }
+            float distanceScore = 0f;
             
-            // _activeFingerTip.SetColliderTriggerOn();
-            
+            foreach (var fingerTip in _allFingerTips)
+            {
+                float fingerTipDistanceScore = fingerTip.GetSumDistance();
+                if (fingerTipDistanceScore >= distanceScore)
+                {
+                    _activeFingerTip = fingerTip;
+                    distanceScore = fingerTipDistanceScore;
+                }
+            }
+            _activeFingerTip.SetColliderTriggerOn();
         }
         
         // LEFT HAND

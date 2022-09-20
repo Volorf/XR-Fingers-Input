@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56b39df6083c60a44813b4349bc8dcb3, type: 3}
   m_Name: RH_Ring
   m_EditorClassIdentifier: 
-  type: 2
+  type: 3
   pairs:
   - type: 5
     value: X

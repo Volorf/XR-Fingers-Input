@@ -26,14 +26,14 @@ public class FingerTip : MonoBehaviour
 
     public void SetColliderTriggerOn()
     {
-        // _sphereCollider.isTrigger = true;
-        // _meshRenderer.material = activeMat;
+        sphereCollider.isTrigger = true;
+        meshRenderer.material = activeMat;
     }
     
     public void SetColliderTriggerOff()
     {
-        // _sphereCollider.isTrigger = false;
-        // _meshRenderer.material = normMat;
+        sphereCollider.isTrigger = false;
+        meshRenderer.material = normMat;
     }
     
     public float GetSumDistance()
@@ -55,24 +55,33 @@ public class FingerTip : MonoBehaviour
         {
             _canInteract = false;
             FingerTip otherFingerTip = other.gameObject.GetComponent<FingerTip>();
-            if (GetSumDistance() > otherFingerTip.GetSumDistance())
-            {
-                if (otherFingerTip.data.Values.ContainsKey(data.type))
-                {
-                    string str = "Value for " + otherFingerTip.data.type.ToString() + " is " + otherFingerTip.data.Values[data.type];
-                    Notification not = new Notification(str, NotificationType.Warning);
-                    NotificationManager.Instance.AddMessage(not);
-                }
-            }
-            else
+            if (GetSumDistance() < otherFingerTip.GetSumDistance())
             {
                 if (data.Values.ContainsKey(otherFingerTip.data.type))
                 {
-                    string str = "Value for " + data.type.ToString() + " is " + data.Values[otherFingerTip.data.type];
+                    string str = data.Values[otherFingerTip.data.type].ToString();
                     Notification not = new Notification(str, NotificationType.Warning);
                     NotificationManager.Instance.AddMessage(not);
                 }
             }
+            // if (GetSumDistance() > otherFingerTip.GetSumDistance())
+            // {
+            //     if (otherFingerTip.data.Values.ContainsKey(data.type))
+            //     {
+            //         string str = "Value for " + otherFingerTip.data.type.ToString() + " is " + otherFingerTip.data.Values[data.type];
+            //         Notification not = new Notification(str, NotificationType.Warning);
+            //         NotificationManager.Instance.AddMessage(not);
+            //     }
+            // }
+            // else
+            // {
+            //     if (data.Values.ContainsKey(otherFingerTip.data.type))
+            //     {
+            //         string str = "Value for " + data.type.ToString() + " is " + data.Values[otherFingerTip.data.type];
+            //         Notification not = new Notification(str, NotificationType.Warning);
+            //         NotificationManager.Instance.AddMessage(not);
+            //     }
+            // }
 
             StartCoroutine(MakeItInteractableAgain());
         }
