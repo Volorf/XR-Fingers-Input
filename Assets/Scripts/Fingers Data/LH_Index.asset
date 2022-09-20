@@ -7,28 +7,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 56b39df6083c60a44813b4349bc8dcb3, type: 3}
-  m_Name: RH_Thumb
+  m_Name: LH_Index
   m_EditorClassIdentifier: 
-  type: 0
+  type: 6
   pairs:
-  - type: 5
-    value: D
-  - type: 6
-    value: L
-  - type: 7
-    value: C
-  - type: 8
-    value: U
-  - type: 9
-    value: M
-  - type: 1
-    value: W
-  - type: 7
-    value: F
-  - type: 3
-    value: G
-  - type: 4
-    value: Y
+  - type: 0
+    value: P
