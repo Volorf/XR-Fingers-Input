@@ -32,7 +32,7 @@ public class HandsManager : MonoBehaviour
     public FingerTipPosition LeftHandPinkyTipPosition;
 
     private FingerTip _activeFingerTip;
-    private List<FingerTip> _allFingerTips;
+    private List<FingerTip> _allFingerTips = new List<FingerTip>();
 
     private void Start()
     {
@@ -47,9 +47,9 @@ public class HandsManager : MonoBehaviour
                 _allFingerTips.Add(ft);
             }
         }
-
-        Notification not = new Notification(_allFingerTips.Count.ToString(), NotificationType.Error);
-        NotificationManager.Instance.AddMessage(not);
+        
+        Debug.LogWarning("Count:" + _allFingerTips.Count);
+    
     }
 
     void Update()
