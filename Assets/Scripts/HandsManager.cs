@@ -10,6 +10,8 @@ public class FingerTipPosition: UnityEvent<Vector3> {};
 
 public class HandsManager : MonoBehaviour
 {
+    public LetterEvent letterHappened = new LetterEvent();
+    
     [Header("Right Hand")]
     [Space(8)]
     public OVRSkeleton rightHandSkeleton;
@@ -44,6 +46,7 @@ public class HandsManager : MonoBehaviour
         {
             if (finger.TryGetComponent(out FingerTip ft))
             {
+                ft.letterEvent.AddListener(LetterHappened);
                 _allFingerTips.Add(ft);
             }
         }
@@ -51,7 +54,11 @@ public class HandsManager : MonoBehaviour
         Debug.LogWarning("Count:" + _allFingerTips.Count);
 
     }
-    
+
+    private void LetterHappened(string s)
+    {
+        letterHappened.Invoke(s);
+    }
     
     void Update()
     {

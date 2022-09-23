@@ -3,7 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using Volorf.VRNotifications;
+
+[Serializable]
+public class LetterEvent: UnityEvent<string> {};
 
 public class FingerTip : MonoBehaviour
 {
@@ -11,6 +15,8 @@ public class FingerTip : MonoBehaviour
     public TextMeshPro label;
     public FingerTipData data;
     public KeysPanelController keysPanelController;
+
+    public LetterEvent letterEvent = new LetterEvent();
     
     [SerializeField] private int positionsMemoryLimit = 10;
     [SerializeField] private float positionsFrequencyCheck = 0.2f;
@@ -66,10 +72,11 @@ public class FingerTip : MonoBehaviour
                 if (data.Values.ContainsKey(otherFingerTip.data.type))
                 {
                     string str = data.Values[otherFingerTip.data.type].ToString();
-                    Notification not = new Notification(str, NotificationType.Warning);
+                    letterEvent.Invoke(str);
+                    // Notification not = new Notification(str, NotificationType.Warning);
                     keysPanelController.HighlightKeys(otherFingerTip.data.type);
                     _canDehighlight = true;
-                    NotificationManager.Instance.AddMessage(not);
+                    // NotificationManager.Instance.AddMessage(not);
                 }
             }
             // if (GetSumDistance() > otherFingerTip.GetSumDistance())

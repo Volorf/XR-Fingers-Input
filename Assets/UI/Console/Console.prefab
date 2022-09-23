@@ -66,7 +66,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Message has been delivered.
+  m_text: '|'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2b1aa02e790d14238ac2ad979d291f13, type: 2}
   m_sharedMaterial: {fileID: 3551768697907141846, guid: 2b1aa02e790d14238ac2ad979d291f13, type: 2}
@@ -75,8 +75,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -247,6 +247,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3288814599142996315}
   - component: {fileID: 5816277329989233099}
+  - component: {fileID: 5680720732573898696}
   m_Layer: 0
   m_Name: Console
   m_TagString: Untagged
@@ -282,6 +283,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f45d18574845a7c40bf7c360ba4ac643, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  label: {fileID: 9023587653172630887}
+--- !u!114 &5680720732573898696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7564678356875220021}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 320339f476b8a3f4dbcffd04157b45fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distanceFromHead: 1
+  downOffset: 0
+  followHeadSmoothKoef: 0.5
+  lookAtHeadSmoothKoef: 0.3
 --- !u!1 &8442968977652079307
 GameObject:
   m_ObjectHideFlags: 0
@@ -341,7 +359,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.06666667, g: 0.06666667, b: 0.06666667, a: 0.8}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.8}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
