@@ -46,10 +46,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bg: {fileID: 5716060229952162059}
-  normalColor: {r: 0, g: 0, b: 0, a: 0.5019608}
-  highlightColor: {r: 1, g: 1, b: 1, a: 0.8}
+  normalColorBG: {r: 0, g: 0, b: 0, a: 0.5019608}
+  highlightColorBG: {r: 1, g: 1, b: 1, a: 0.8}
   label: {fileID: 8681658129427553782}
+  normalColorLabel: {r: 1, g: 1, b: 1, a: 1}
+  highlightColorLabel: {r: 0, g: 0, b: 0, a: 1}
   animDur: 0.3
+  _hiddenScale: {x: 0, y: 0, z: 0}
+  _shownScale: {x: 50, y: 50, z: 50}
 --- !u!1 &3888157821060470435
 GameObject:
   m_ObjectHideFlags: 0

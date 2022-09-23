@@ -28,10 +28,20 @@ public class KeysPanelController : MonoBehaviour
         }
     }
 
-    public void HightlightKey(FingerTipType t)
+    public void HighlightKeys(FingerTipType t)
     {
-        KeyController k = _keys[GetIndexForKey(t)];
-        if(k) k.StartHover();
+        for (int i = 0; i < _keys.Count; i++)
+        {
+            _keys[i].StartHover(i == GetIndexForKey(t) ? true : false);
+        }
+    }
+
+    public void DehighlightKeys()
+    {
+        for (int i = 0; i < _keys.Count; i++)
+        {
+            _keys[i].EndHover();
+        }
     }
 
     private int GetIndexForKey(FingerTipType ft)

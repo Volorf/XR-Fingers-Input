@@ -24,6 +24,7 @@ public class FingerTip : MonoBehaviour
     [SerializeField] private MeshRenderer meshRenderer;
 
     private bool _canInteract = true;
+    private bool _canDehighlight = false;
 
     public void SetColliderTriggerOn()
     {
@@ -53,9 +54,12 @@ public class FingerTip : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        _canDehighlight = false;
+        
         if (other.gameObject.CompareTag("FingerTip") && _canInteract)
         {
             _canInteract = false;
+            
             FingerTip otherFingerTip = other.gameObject.GetComponent<FingerTip>();
             if (GetSumDistance() < otherFingerTip.GetSumDistance())
             {
@@ -63,7 +67,8 @@ public class FingerTip : MonoBehaviour
                 {
                     string str = data.Values[otherFingerTip.data.type].ToString();
                     Notification not = new Notification(str, NotificationType.Warning);
-                    keysPanelController.HightlightKey(otherFingerTip.data.type);
+                    keysPanelController.HighlightKeys(otherFingerTip.data.type);
+                    _canDehighlight = true;
                     NotificationManager.Instance.AddMessage(not);
                 }
             }
@@ -88,6 +93,11 @@ public class FingerTip : MonoBehaviour
 
             StartCoroutine(MakeItInteractableAgain());
         }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (_canDehighlight) keysPanelController.DehighlightKeys();
     }
 
     private IEnumerator MakeItInteractableAgain()

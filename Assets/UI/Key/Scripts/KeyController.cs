@@ -9,31 +9,39 @@ using UnityEngine.UI;
 public class KeyController : MonoBehaviour
 {
     [SerializeField] private Image bg;
-    [SerializeField] private Color normalColor;
-    [SerializeField] private Color highlightColor;
+    [SerializeField] private Color normalColorBG;
+    [SerializeField] private Color highlightColorBG;
     [SerializeField] private TextMeshProUGUI label;
+    [SerializeField] private Color normalColorLabel;
+    [SerializeField] private Color highlightColorLabel;
     [SerializeField] private float animDur;
 
-    private Vector3 _hiddenScale = Vector3.zero;
-    private Vector3 _shownScale = Vector3.one;
+    [SerializeField] private Vector3 _hiddenScale;
+    [SerializeField] private Vector3 _shownScale;
 
-    private void OnEnable()
+    private void Start()
     {
-        // transform.localScale = _hiddenScale;
+        transform.localScale = _hiddenScale;
     }
 
     [ContextMenu("Start Hover")]
-    public void StartHover()
+    public void StartHover(bool isHighlighted)
     {
         transform.DOScale(_shownScale, animDur);
-        bg.DOColor(highlightColor, animDur);
+        bg.color = normalColorBG;
+        label.color = normalColorLabel;
+        
+        if (isHighlighted)
+        {
+            bg.color = highlightColorBG;
+            label.color = highlightColorLabel;
+        }
     }
     
-    [ContextMenu("End Hover")]
+    // [ContextMenu("End Hover")]
     public void EndHover()
     {
-        bg.DOColor(normalColor, animDur);
-        transform.DOScale(_hiddenScale, animDur).OnComplete(() => { transform.gameObject.SetActive(false);});
+        transform.DOScale(_hiddenScale, animDur);
     }
 
     public void SetLetter(string s)
