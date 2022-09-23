@@ -31,7 +31,7 @@ public struct FingerTypeValuePair
 public class FingerTipData : ScriptableObject
 {
     public FingerTipType type;
-    [SerializeField] private List<FingerTypeValuePair> pairs;
+    public List<FingerTypeValuePair> pairs;
 
     public Hashtable Values = new Hashtable();
 

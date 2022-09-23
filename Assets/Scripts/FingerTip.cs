@@ -10,6 +10,7 @@ public class FingerTip : MonoBehaviour
 
     public TextMeshPro label;
     public FingerTipData data;
+    public KeysPanelController keysPanelController;
     
     [SerializeField] private int positionsMemoryLimit = 10;
     [SerializeField] private float positionsFrequencyCheck = 0.2f;
@@ -47,6 +48,7 @@ public class FingerTip : MonoBehaviour
         // _meshRenderer = GetComponent<MeshRenderer>();
         _positionsQueue = new LimitedPositionsQueue(positionsMemoryLimit);
         StartCoroutine(PositionsCollector());
+        keysPanelController.InitKeys(data.pairs);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -61,6 +63,7 @@ public class FingerTip : MonoBehaviour
                 {
                     string str = data.Values[otherFingerTip.data.type].ToString();
                     Notification not = new Notification(str, NotificationType.Warning);
+                    keysPanelController.HightlightKey(otherFingerTip.data.type);
                     NotificationManager.Instance.AddMessage(not);
                 }
             }
