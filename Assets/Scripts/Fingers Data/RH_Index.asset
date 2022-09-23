@@ -15,4 +15,12 @@ MonoBehaviour:
   type: 1
   pairs:
   - type: 5
+    value: F
+  - type: 6
+    value: G
+  - type: 7
+    value: Y
+  - type: 8
+    value: P
+  - type: 9
     value: B

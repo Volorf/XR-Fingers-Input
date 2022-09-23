@@ -15,4 +15,8 @@ MonoBehaviour:
   type: 2
   pairs:
   - type: 5
-    value: K
+    value: X
+  - type: 6
+    value: Q
+  - type: 7
+    value: Z

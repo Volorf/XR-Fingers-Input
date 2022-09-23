@@ -15,4 +15,4 @@ MonoBehaviour:
   type: 3
   pairs:
   - type: 5
-    value: X
+    value: '!'

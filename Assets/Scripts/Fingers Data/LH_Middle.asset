@@ -16,3 +16,7 @@ MonoBehaviour:
   pairs:
   - type: 0
     value: V
+  - type: 1
+    value: K
+  - type: 2
+    value: J

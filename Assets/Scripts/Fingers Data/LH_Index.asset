@@ -15,4 +15,12 @@ MonoBehaviour:
   type: 6
   pairs:
   - type: 0
-    value: P
+    value: L
+  - type: 1
+    value: C
+  - type: 2
+    value: U
+  - type: 3
+    value: M
+  - type: 4
+    value: W
