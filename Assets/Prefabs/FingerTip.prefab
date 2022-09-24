@@ -471,7 +471,10 @@ MonoBehaviour:
   label: {fileID: 1751634982328983274}
   data: {fileID: 0}
   keysPanelController: {fileID: 7503165429072979696}
-  positionsMemoryLimit: 10
+  letterEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  positionsMemoryLimit: 20
   positionsFrequencyCheck: 0.1
   normMat: {fileID: 2100000, guid: 2cb57b3cc036e1446acb715a92610056, type: 2}
   activeMat: {fileID: 2100000, guid: 51a0658cfce819f4fa12394e6a180f1b, type: 2}

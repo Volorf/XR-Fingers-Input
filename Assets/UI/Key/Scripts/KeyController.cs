@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
@@ -8,9 +5,18 @@ using UnityEngine.UI;
 
 public class KeyController : MonoBehaviour
 {
+    [Header("Background")] 
+    [SerializeField] private CanvasGroup canvasGroup;
+    [SerializeField] private float normalAlpha;
+    
+    [Space(8)]
+    [Header("Background")]
     [SerializeField] private Image bg;
     [SerializeField] private Color normalColorBG;
     [SerializeField] private Color highlightColorBG;
+    
+    [Space(8)]
+    [Header("Label")]
     [SerializeField] private TextMeshProUGUI label;
     [SerializeField] private Color normalColorLabel;
     [SerializeField] private Color highlightColorLabel;
@@ -21,7 +27,8 @@ public class KeyController : MonoBehaviour
 
     private void Start()
     {
-        transform.localScale = _hiddenScale;
+        // transform.localScale = _hiddenScale;
+        canvasGroup.alpha = normalAlpha;
     }
 
     [ContextMenu("Start Hover")]
@@ -30,18 +37,23 @@ public class KeyController : MonoBehaviour
         transform.DOScale(_shownScale, animDur);
         bg.color = normalColorBG;
         label.color = normalColorLabel;
+        canvasGroup.alpha = normalAlpha;
         
         if (isHighlighted)
         {
             bg.color = highlightColorBG;
             label.color = highlightColorLabel;
+            canvasGroup.DOFade(1f, animDur);
         }
     }
     
     // [ContextMenu("End Hover")]
     public void EndHover()
     {
-        transform.DOScale(_hiddenScale, animDur);
+        // transform.DOScale(_hiddenScale, animDur);
+        canvasGroup.DOFade(normalAlpha, animDur);
+        bg.color = normalColorBG;
+        label.color = normalColorLabel;
     }
 
     public void SetLetter(string s)
