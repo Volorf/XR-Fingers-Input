@@ -195,12 +195,29 @@
       },
       "url": "https://packages.unity.com"
     },
+    "com.volorf.follow-head": {
+      "version": "https://github.com/Volorf/Follow-Head.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "b3fe12012a0af602f9420c20bb663149bcbcc69f"
+    },
     "com.volorf.grid-mesh": {
       "version": "https://github.com/Volorf/Grid-Mesh.git",
       "depth": 0,
       "source": "git",
       "dependencies": {},
       "hash": "36bc826c163b535a24b6d50a6dc455b577526c26"
+    },
+    "com.volorf.vr-logger": {
+      "version": "https://github.com/Volorf/VR-Logger.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.unity.textmeshpro": "3.0.6",
+        "com.volorf.follow-head": "https://github.com/Volorf/Follow-Head.git"
+      },
+      "hash": "8f4091011d4a2f57fb504231a21fe4a65414eff1"
     },
     "com.volorf.vr-notifications": {
       "version": "https://github.com/Volorf/VR-Notifications.git",
