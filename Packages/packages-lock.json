@@ -214,10 +214,9 @@
       "depth": 0,
       "source": "git",
       "dependencies": {
-        "com.unity.textmeshpro": "3.0.6",
-        "com.volorf.follow-head": "https://github.com/Volorf/Follow-Head.git"
+        "com.unity.textmeshpro": "3.0.6"
       },
-      "hash": "8f4091011d4a2f57fb504231a21fe4a65414eff1"
+      "hash": "d956ae924b2e1f608057e593d03102b9a399ae07"
     },
     "com.volorf.vr-notifications": {
       "version": "https://github.com/Volorf/VR-Notifications.git",
@@ -227,6 +226,13 @@
         "com.unity.textmeshpro": "3.0.6"
       },
       "hash": "f46846890c7eeb7ef9a889d9b2270e5dc2db45fd"
+    },
+    "com.volorf.xyz-axis": {
+      "version": "https://github.com/Volorf/Debug-XYZ-Axis.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "64a3e9cdc63e5594a36ae33e4e98eb4a9a789871"
     },
     "com.unity.modules.ai": {
       "version": "1.0.0",

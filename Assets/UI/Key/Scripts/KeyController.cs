@@ -43,7 +43,7 @@ public class KeyController : MonoBehaviour
         {
             bg.color = highlightColorBG;
             label.color = highlightColorLabel;
-            canvasGroup.DOFade(1f, animDur);
+            canvasGroup.alpha = 1f;
         }
     }
     
@@ -51,7 +51,7 @@ public class KeyController : MonoBehaviour
     public void EndHover()
     {
         // transform.DOScale(_hiddenScale, animDur);
-        canvasGroup.DOFade(normalAlpha, animDur);
+        canvasGroup.alpha = normalAlpha;
         bg.color = normalColorBG;
         label.color = normalColorLabel;
     }

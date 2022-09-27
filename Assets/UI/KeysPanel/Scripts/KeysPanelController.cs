@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,9 +12,18 @@ public class KeysPanelController : MonoBehaviour
     private List<KeyController> _keys = new List<KeyController>();
     private List<FingerTypeValuePair> _pairs;
     
+
+    private void Start()
+    {
+
+    }
+
     public void InitKeys(List<FingerTypeValuePair> pairs)
     {
         _pairs = pairs;
+
+        float xOffset = ((keyXOffset * (_pairs.Count - 1)) + (keyXOffset * (_pairs.Count - 1)));
+        print("xOffset:" + xOffset);
         
         for (int i = 0; i < pairs.Count; i++)
         {
@@ -24,8 +34,9 @@ public class KeysPanelController : MonoBehaviour
             KeyController kc = k.GetComponent<KeyController>();
             if (kc) kc.SetLetter(_pairs[i].value);
             _keys.Add(kc);
-            
         }
+
+        // transform.localPosition = new Vector3(-xOffset / 0.02f, 0.02f / 0.02f, 0f);
     }
 
     public void HighlightKeys(FingerTipType t)
